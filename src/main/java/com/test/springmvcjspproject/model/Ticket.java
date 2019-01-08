@@ -18,6 +18,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Length;
 
 
@@ -44,8 +46,9 @@ public class Ticket {
 	@Column(name = "priority")
 	private Integer priority;
 	
-	@ManyToOne(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
-	@JoinColumn(name = "userId")
+	@ManyToOne(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+	@JoinColumn(name = "fk_user")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private User user;
 	
 	@Column(name = "active")

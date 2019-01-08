@@ -29,6 +29,11 @@ public class TicketService {
     	ticketRepository.deleteById(id);
     }
     
+    public Ticket getOne(long id) {
+    	return ticketRepository.getOne(id);
+    }
+    
+    
     public List<Ticket> getAllTickets() {
     	return ticketRepository.findAll();
     	

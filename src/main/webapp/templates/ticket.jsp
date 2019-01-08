@@ -316,6 +316,7 @@ table.table .avatar {
 				<div class="row">
 					<div class="col-sm-6">
 						<h2>
+						
 							Manage <b>Tickets</b>
 						</h2>
 					</div>
@@ -356,10 +357,23 @@ table.table .avatar {
 						<c:url var="deleteLink" value="/customer/delete">
 							<c:param name="customerId" value="${tempCustomer.id}" />
 						</c:url> --%>
+						
+						<!-- construct an "update" link with ticket id -->
+<%-- 						<c:url var="updateLink" value="/customer/updateForm">
+							<c:param name="ticketId" value="${tempTicket.ticketId}" />
+							<c:param name="ticketId" value="${tempTicket.title}" />
+							<c:param name="ticketId" value="${tempTicket.openedDateTime}" />
+							<c:param name="ticketId" value="${tempTicket.priority}" />
+						</c:url> --%>
+						
+						<!-- construct an "delete" link with ticket id -->
+						<c:url var="deleteLink" value="/deleteTicket">
+							<c:param name="ticketId" value="${tempTicket.ticketId}" />
+						</c:url>  
 
 						<tr>
 							<td><span class="custom-checkbox"> <input
-									type="checkbox" id="checkbox1" name="options[]"
+									type="checkbox" id="checkbox_options" name="checkbox_options"
 									value="tempTicket.ticketId"> <label for="checkbox1"></label>
 							</span></td>
 							<td>${tempTicket.ticketId}</td>
@@ -370,10 +384,10 @@ table.table .avatar {
 							<td><a href="#editEmployeeModal" class="edit"
 								data-toggle="modal"><i class="material-icons"
 									data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a
-								href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
+								href="${deleteLink}" class="delete" data-toggle="modal"><i
 									class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 							</td>
-
+							
 							<%-- <td>
 								<!-- display the update link --> <a href="${updateLink}">Update</a>
 								| <a href="${deleteLink}"
@@ -383,89 +397,6 @@ table.table .avatar {
 						</tr>
 
 					</c:forEach>
-
-
-
-					<tr>
-						<td><span class="custom-checkbox"> <input
-								type="checkbox" id="checkbox1" name="options[]" value="1">
-								<label for="checkbox1"></label>
-						</span></td>
-						<td>90</td>
-						<td>Gitlab login issue</td>
-						<td>2019-01-07 14:20:00</td>
-						<td>4</td>
-						<td><a href="#editEmployeeModal" class="edit"
-							data-toggle="modal"><i class="material-icons"
-								data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a
-							href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
-								class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>
-					<tr>
-						<td><span class="custom-checkbox"> <input
-								type="checkbox" id="checkbox2" name="options[]" value="1">
-								<label for="checkbox2"></label>
-						</span></td>
-						<td>91</td>
-						<td>NOSI network connection problem</td>
-						<td>2019-01-07 14:20:00</td>
-						<td>3</td>
-						<td><a href="#editEmployeeModal" class="edit"
-							data-toggle="modal"><i class="material-icons"
-								data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a
-							href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
-								class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>
-					<tr>
-						<td><span class="custom-checkbox"> <input
-								type="checkbox" id="checkbox3" name="options[]" value="1">
-								<label for="checkbox3"></label>
-						</span></td>
-						<td>92</td>
-						<td>ADP Globalview login issue</td>
-						<td>2019-01-08 14:20:00</td>
-						<td>4</td>
-						<td><a href="#editEmployeeModal" class="edit"
-							data-toggle="modal"><i class="material-icons"
-								data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a
-							href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
-								class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>
-					<tr>
-						<td><span class="custom-checkbox"> <input
-								type="checkbox" id="checkbox4" name="options[]" value="1">
-								<label for="checkbox4"></label>
-						</span></td>
-						<td>93</td>
-						<td>Gitlab project access permission</td>
-						<td>2019-01-08 14:20:00</td>
-						<td>4</td>
-						<td><a href="#editEmployeeModal" class="edit"
-							data-toggle="modal"><i class="material-icons"
-								data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a
-							href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
-								class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>
-					<tr>
-						<td><span class="custom-checkbox"> <input
-								type="checkbox" id="checkbox5" name="options[]" value="1">
-								<label for="checkbox5"></label>
-						</span></td>
-						<td>94</td>
-						<td>Some another problem ticket</td>
-						<td>2019-01-06 14:20:00</td>
-						<td>5</td>
-						<td><a href="#editEmployeeModal" class="edit"
-							data-toggle="modal"><i class="material-icons"
-								data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a
-							href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
-								class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>
 				</tbody>
 			</table>
 			<div class="clearfix">
@@ -525,27 +456,31 @@ table.table .avatar {
 	<div id="editEmployeeModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form>
+				<form:form action="editTicket" method="get"  >
 					<div class="modal-header">
 						<h4 class="modal-title">Edit Ticket</h4>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">
-						<div class="form-group">
-							<label>Title</label> <input type="text" class="form-control"
+				    	<div class="form-group">
+							<label>ID</label> <input type="number"  id="ticketId" name="ticketId" class="form-control"
 								required>
 						</div>
 						<div class="form-group">
-							<label>Priority</label> <input type="number" class="form-control"
+							<label>Title</label> <input type="text"  id="title" name="title" class="form-control"
 								required>
 						</div>
 						<div class="form-group">
-							<label>Active</label> <input type="number" class="form-control"
+							<label>Priority</label> <input type="number" id="priority" name="priority"  class="form-control"
 								required>
 						</div>
 						<div class="form-group">
-							<label>Description</label> <input type="text"
+							<label>Active</label> <input type="number" id="active" name="active" class="form-control"
+								required>
+						</div>
+						<div class="form-group">
+							<label>Description</label> <input type="text"  id="description" name="description" 
 								class="form-control" required>
 						</div>
 					</div>
@@ -554,7 +489,7 @@ table.table .avatar {
 							value="Cancel"> <input type="submit" class="btn btn-info"
 							value="Save">
 					</div>
-				</form>
+				</form:form>
 			</div>
 		</div>
 	</div>
@@ -562,7 +497,7 @@ table.table .avatar {
 	<div id="deleteEmployeeModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form>
+				<form:form action="deleteTickets" method="get" >
 					<div class="modal-header">
 						<h4 class="modal-title">Delete Ticket</h4>
 						<button type="button" class="close" data-dismiss="modal"
@@ -576,10 +511,11 @@ table.table .avatar {
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal"
-							value="Cancel"> <input type="submit"
+							value="Cancel"> 
+							<input type="submit"
 							class="btn btn-danger" value="Delete">
 					</div>
-				</form>
+				</form:form>
 			</div>
 		</div>
 	</div>
