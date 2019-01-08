@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
-	 <h1>Spring Boot JSP Ticket App Demo</h1>
+	 <h1>Help center</h1>
 	 
 </body>
 </html>

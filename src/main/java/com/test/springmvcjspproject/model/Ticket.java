@@ -32,17 +32,16 @@ public class Ticket {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ticket_id")
-	private int ticketId;
+	private long ticketId;
 	
-	@Column(name = "tittle")
-	@NotEmpty(message = "*Please provide a tittle")
-	private String tittle;
+	@Column(name = "title")
+	@NotEmpty(message = "*Please provide a title")
+	private String title;
 	
 	@Column(name = "openedDateTime")
 	private Date openedDateTime;
 	
 	@Column(name = "priority")
-	@NotEmpty(message = "*Please enter an integer")
 	private Integer priority;
 	
 	@ManyToOne(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
@@ -56,4 +55,60 @@ public class Ticket {
 	@NotEmpty(message = "*Please enter the description")
 	private String description;
 
+	public Ticket(@NotEmpty(message = "*Please provide a title") String title, Date openedDateTime,
+			@NotEmpty(message = "*Please enter an integer") Integer priority, User user, int active,
+			@NotEmpty(message = "*Please enter the description") String description) {
+		super();
+		this.title = title;
+		this.openedDateTime = openedDateTime;
+		this.priority = priority;
+		this.user = user;
+		this.active = active;
+		this.description = description;
+	}
+	public Ticket() {}
+	public long getTicketId() {
+		return ticketId;
+	}
+	public void setTicketId(long ticketId) {
+		this.ticketId = ticketId;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public Date getOpenedDateTime() {
+		return openedDateTime;
+	}
+	public void setOpenedDateTime(Date openedDateTime) {
+		this.openedDateTime = openedDateTime;
+	}
+	public Integer getPriority() {
+		return priority;
+	}
+	public void setPriority(Integer priority) {
+		this.priority = priority;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public int getActive() {
+		return active;
+	}
+	public void setActive(int active) {
+		this.active = active;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	
 }

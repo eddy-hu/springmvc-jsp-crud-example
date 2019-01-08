@@ -3,10 +3,11 @@
 
 <html lang="en">
 <head>
-	<title>Spring Boot JSP example</title>
+	<title>Spring Boot JSP Ticket App Demo</title>
 	<link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
-	 <h1>Message: xxxxxxxxxxxxxxxxxxxx</h1>
+	 <h1>About us</h1>
+	 
 </body>
 </html>
