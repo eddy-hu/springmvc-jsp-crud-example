@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -83,11 +85,17 @@ public class HomeController {
 
     }
     
-    @RequestMapping(value="/deleteTickets", method = RequestMethod.GET)
-    public String deleteTickets(ModelMap map, @RequestParam String[] checkbox_options){
+    @RequestMapping(value="/deleteTickets", method = RequestMethod.POST)
+    public String deleteTickets(ModelMap map,HttpServletRequest request){
    
+    	
+    	String[] checkbox_options = request.getParameterValues("checkbox_options");
+    	if(checkbox_options==null) {
+    		System.out.println("empty!!!!!!!!!!!!!!!!!!! ");
+    	}else {
     	for (int i = 0; i < checkbox_options.length; i++) {		 
     		System.out.println(checkbox_options[i] + " ");
+    	}
     	}
     	
 		// ticketService.deleteTicket(ticketId);

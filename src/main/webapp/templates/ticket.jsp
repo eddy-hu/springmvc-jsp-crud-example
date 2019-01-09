@@ -497,7 +497,7 @@ table.table .avatar {
 	<div id="deleteEmployeeModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form:form action="deleteTickets" method="get" >
+				<form:form action="deleteTickets" method="post" >
 					<div class="modal-header">
 						<h4 class="modal-title">Delete Ticket</h4>
 						<button type="button" class="close" data-dismiss="modal"
